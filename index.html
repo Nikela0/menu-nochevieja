@@ -2,27 +2,123 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi menú de Nochevieja</title>
+  <title>Menú Nochevieja</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
-<h1>Mi menú de Nochevieja</h1>
+<h1>Menú de Nochevieja</h1>
 
-<p>Elige y pulsa el botón.</p>
+<label>Personas</label><br>
+<input type="number" id="personas" value="4"><br><br>
 
-<label>¿Cuántas personas?</label><br>
-<input type="number" value="4"><br><br>
-
-<label>Tipo de menú</label><br>
-<select>
+<label>Tipo</label><br>
+<select id="tipo">
   <option>Vegetariano</option>
   <option>Vegano</option>
 </select><br><br>
 
-<button>Generar menú</button>
+<button onclick="generarMenu()">Generar menú</button>
 
-<p>(De momento esto es una prueba)</p>
+<h2>Menú</h2>
+<pre id="menu"></pre>
+
+<h2>Lista de la compra</h2>
+<pre id="compra"></pre>
+
+<script>
+function generarMenu() {
+
+const menus = [
+{
+  nombre: "Lasaña de verduras",
+  entrante: "Crema de calabaza",
+  principal: "Lasaña de verduras",
+  postre: "Mousse de chocolate",
+  compra: [
+    "Calabaza",
+    "Cebolla",
+    "Nata o bebida vegetal",
+    "Placas de lasaña",
+    "Calabacín",
+    "Berenjena",
+    "Tomate triturado",
+    "Chocolate negro",
+    "Huevos o sustituto vegetal"
+  ]
+},
+{
+  nombre: "Risotto de setas",
+  entrante: "Hummus con crudités",
+  principal: "Risotto de setas",
+  postre: "Peras al horno",
+  compra: [
+    "Garbanzos cocidos",
+    "Tahini",
+    "Limón",
+    "Arroz arborio",
+    "Setas",
+    "Caldo vegetal",
+    "Peras",
+    "Canela"
+  ]
+},
+{
+  nombre: "Canelones",
+  entrante: "Crema de champiñones",
+  principal: "Canelones de espinacas y ricotta",
+  postre: "Tarta de manzana",
+  compra: [
+    "Champiñones",
+    "Patatas",
+    "Espinacas",
+    "Ricotta",
+    "Pasta para canelones",
+    "Manzanas",
+    "Harina",
+    "Azúcar"
+  ]
+},
+{
+  nombre: "Berenjenas rellenas",
+  entrante: "Ensalada templada",
+  principal: "Berenjenas rellenas",
+  postre: "Yogur con frutos rojos",
+  compra: [
+    "Berenjenas",
+    "Pimiento",
+    "Cebolla",
+    "Tomate",
+    "Queso rallado o vegano",
+    "Yogur",
+    "Frutos rojos"
+  ]
+}
+];
+
+const personas = document.getElementById("personas").value;
+const tipo = document.getElementById("tipo").value;
+
+const menu = menus[Math.floor(Math.random() * menus.length)];
+
+document.getElementById("menu").textContent =
+`MENÚ ${tipo.toUpperCase()}
+Para ${personas} personas
+
+Entrante:
+${menu.entrante}
+
+Principal:
+${menu.principal}
+
+Postre:
+${menu.postre}`;
+
+document.getElementById("compra").textContent =
+menu.compra.map(item => "- " + item).join("\n");
+
+}
+</script>
 
 </body>
 </html>
