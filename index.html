@@ -2,91 +2,94 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Menú Nochevieja</title>
+  <title>Menú Nochevieja Vegetariano</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
-<h1>Menú de Nochevieja</h1>
-
-<label>Personas</label><br>
-<input type="number" id="personas" value="4"><br><br>
+<h1>Menú de Nochevieja – Vegetariano</h1>
 
 <button onclick="generarMenu()">Generar menú</button>
 
-<h2>Menú</h2>
-<pre id="menu"></pre>
+<h2>🥂 Pica-pica</h2>
+<pre id="pica"></pre>
 
-<h2>Receta principal</h2>
-<pre id="receta"></pre>
+<h2>🍽️ Primeros</h2>
+<pre id="primeros"></pre>
 
-<h2>Lista de la compra</h2>
+<h2>🍽️ Segundos</h2>
+<pre id="segundos"></pre>
+
+<h2>🍰 Postres</h2>
+<pre id="postres"></pre>
+
+<h2>🛒 Lista de la compra (todo el menú)</h2>
 <pre id="compra"></pre>
 
 <script>
 function generarMenu() {
 
-  const menus = [
-    {
-      entrante: "Crema de calabaza",
-      principal: "Lasaña de verduras",
-      postre: "Mousse de chocolate",
-      receta: 
-`1. Sofríe cebolla y verduras.
-2. Añade tomate triturado.
-3. Monta capas con pasta y verduras.
-4. Hornea 35 minutos a 180º.`,
-      compra: [
-        "Calabaza",
-        "Cebolla",
-        "Calabacín",
-        "Berenjena",
-        "Tomate triturado",
-        "Placas de lasaña",
-        "Chocolate negro",
-        "Nata o bebida vegetal"
-      ]
-    },
-    {
-      entrante: "Hummus con verduras",
-      principal: "Risotto de setas",
-      postre: "Peras al horno",
-      receta:
-`1. Sofríe cebolla.
-2. Añade arroz y caldo poco a poco.
-3. Incorpora setas.
-4. Remueve hasta cremoso.`,
-      compra: [
-        "Garbanzos",
-        "Tahini",
-        "Limón",
-        "Arroz",
-        "Setas",
-        "Caldo vegetal",
-        "Peras",
-        "Canela"
-      ]
-    }
-  ];
+const pica = [
+{n:"Crema de calabaza en vasito", r:"Cuece calabaza y cebolla 20 min, tritura y ajusta sal.", i:["Calabaza","Cebolla","Aceite","Sal"]},
+{n:"Brochetas de queso y uvas", r:"Corta queso y ensarta con uvas.", i:["Queso","Uvas"]},
+{n:"Tostas de hummus", r:"Tritura garbanzos con limón y aceite y unta.", i:["Garbanzos","Limón","Aceite","Pan"]},
+{n:"Champiñones salteados", r:"Saltea champiñones con ajo y perejil.", i:["Champiñones","Ajo","Perejil","Aceite"]},
+{n:"Patatas bravas suaves", r:"Cuece patatas y dóralas al horno.", i:["Patatas","Aceite","Sal"]},
+{n:"Guacamole", r:"Machaca aguacate con tomate y limón.", i:["Aguacate","Tomate","Limón","Sal"]},
+{n:"Croquetas de espinacas", r:"Haz bechamel, añade espinacas y fríe.", i:["Espinacas","Leche","Harina","Pan rallado"]},
+{n:"Caprese", r:"Tomate, mozzarella y albahaca.", i:["Tomate","Mozzarella","Albahaca"]},
+{n:"Empanadillas de verduras", r:"Saltea verduras, rellena y hornea.", i:["Obleas","Verduras","Aceite"]},
+{n:"Paté vegetal", r:"Tritura frutos secos con ajo y aceite.", i:["Frutos secos","Ajo","Aceite"]}
+];
 
-  const personas = document.getElementById("personas").value;
-  const menu = menus[Math.floor(Math.random() * menus.length)];
+const primeros = [
+{n:"Crema de champiñones", r:"Cuece champiñones y cebolla y tritura.", i:["Champiñones","Cebolla","Sal"]},
+{n:"Crema de puerros", r:"Cuece puerros y patata y tritura.", i:["Puerros","Patata","Sal"]},
+{n:"Risotto de setas", r:"Arroz con caldo poco a poco y setas.", i:["Arroz","Setas","Caldo","Cebolla"]},
+{n:"Ensalada templada de queso de cabra", r:"Verduras salteadas con queso.", i:["Verduras","Queso de cabra"]},
+{n:"Crema zanahoria y naranja", r:"Cuece zanahoria y tritura con zumo.", i:["Zanahorias","Naranjas"]},
+{n:"Gazpacho suave", r:"Tritura tomate, pepino y enfría.", i:["Tomate","Pepino","Aceite","Sal"]},
+{n:"Sopa de cebolla", r:"Cebolla pochada y caldo 30 min.", i:["Cebolla","Caldo"]},
+{n:"Crema de calabacín", r:"Cuece calabacín y patata.", i:["Calabacín","Patata"]},
+{n:"Ensalada de burrata", r:"Tomate con burrata.", i:["Tomate","Burrata"]},
+{n:"Lentejas suaves", r:"Cuece lentejas con verduras.", i:["Lentejas","Verduras"]}
+];
 
-  document.getElementById("menu").textContent =
-`Para ${personas} personas
+const segundos = [
+{n:"Lasaña de verduras", r:"Capas de verduras y pasta, hornea.", i:["Placas de lasaña","Verduras","Tomate"]},
+{n:"Canelones espinacas y ricotta", r:"Rellena y gratina.", i:["Espinacas","Ricotta","Pasta"]},
+{n:"Berenjenas rellenas", r:"Asa y rellena.", i:["Berenjenas","Verduras","Queso"]},
+{n:"Curry de garbanzos", r:"Garbanzos con coco y especias.", i:["Garbanzos","Leche de coco","Curry"]},
+{n:"Paella vegetal", r:"Arroz con verduras.", i:["Arroz","Verduras","Caldo"]},
+{n:"Pastel de verduras", r:"Verduras con huevo al horno.", i:["Verduras","Huevos"]},
+{n:"Quiche vegetal", r:"Masa con verduras y huevo.", i:["Masa","Verduras","Huevos"]},
+{n:"Albóndigas vegetales", r:"Legumbres trituradas al horno.", i:["Legumbres","Pan rallado"]},
+{n:"Tofu marinado", r:"Marina y hornea.", i:["Tofu","Soja"]},
+{n:"Seitán en salsa", r:"Cuece seitán en salsa.", i:["Seitán","Tomate","Cebolla"]}
+];
 
-Entrante:
-${menu.entrante}
+const postres = [
+{n:"Mousse de chocolate", r:"Chocolate fundido con nata.", i:["Chocolate","Nata"]},
+{n:"Tarta de manzana", r:"Horno 40 min.", i:["Manzanas","Harina","Azúcar"]},
+{n:"Peras al vino", r:"Cuece peras con vino.", i:["Peras","Vino","Canela"]},
+{n:"Brownie", r:"Hornear 25 min.", i:["Chocolate","Harina","Azúcar"]},
+{n:"Yogur con frutos rojos", r:"Servir frío.", i:["Yogur","Frutos rojos"]}
+];
 
-Principal:
-${menu.principal}
+const mostrar = (arr) => arr.map(p=>`${p.n}\n${p.r}`).join("\n\n");
 
-Postre:
-${menu.postre}`;
+document.getElementById("pica").textContent = mostrar(pica);
+document.getElementById("primeros").textContent = mostrar(primeros);
+document.getElementById("segundos").textContent = mostrar(segundos);
+document.getElementById("postres").textContent = mostrar(postres);
 
-  document.getElementById("receta").textContent = menu.receta;
-  document.getElementById("compra").textContent =
-    menu.compra.map(i => "- " + i).join("\n");
+const compra = [...new Set(
+  [...pica,...primeros,...segundos,...postres].flatMap(p=>p.i)
+)];
+
+document.getElementById("compra").textContent =
+compra.map(i=>"• "+i).join("\n");
+
 }
 </script>
 
