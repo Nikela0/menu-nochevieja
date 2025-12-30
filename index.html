@@ -12,16 +12,13 @@
 <label>Personas</label><br>
 <input type="number" id="personas" value="4"><br><br>
 
-<label>Tipo</label><br>
-<select id="tipo">
-  <option>Vegetariano</option>
-  <option>Vegano</option>
-</select><br><br>
-
 <button onclick="generarMenu()">Generar menú</button>
 
 <h2>Menú</h2>
 <pre id="menu"></pre>
+
+<h2>Receta principal</h2>
+<pre id="receta"></pre>
 
 <h2>Lista de la compra</h2>
 <pre id="compra"></pre>
@@ -29,81 +26,54 @@
 <script>
 function generarMenu() {
 
-const menus = [
-{
-  nombre: "Lasaña de verduras",
-  entrante: "Crema de calabaza",
-  principal: "Lasaña de verduras",
-  postre: "Mousse de chocolate",
-  compra: [
-    "Calabaza",
-    "Cebolla",
-    "Nata o bebida vegetal",
-    "Placas de lasaña",
-    "Calabacín",
-    "Berenjena",
-    "Tomate triturado",
-    "Chocolate negro",
-    "Huevos o sustituto vegetal"
-  ]
-},
-{
-  nombre: "Risotto de setas",
-  entrante: "Hummus con crudités",
-  principal: "Risotto de setas",
-  postre: "Peras al horno",
-  compra: [
-    "Garbanzos cocidos",
-    "Tahini",
-    "Limón",
-    "Arroz arborio",
-    "Setas",
-    "Caldo vegetal",
-    "Peras",
-    "Canela"
-  ]
-},
-{
-  nombre: "Canelones",
-  entrante: "Crema de champiñones",
-  principal: "Canelones de espinacas y ricotta",
-  postre: "Tarta de manzana",
-  compra: [
-    "Champiñones",
-    "Patatas",
-    "Espinacas",
-    "Ricotta",
-    "Pasta para canelones",
-    "Manzanas",
-    "Harina",
-    "Azúcar"
-  ]
-},
-{
-  nombre: "Berenjenas rellenas",
-  entrante: "Ensalada templada",
-  principal: "Berenjenas rellenas",
-  postre: "Yogur con frutos rojos",
-  compra: [
-    "Berenjenas",
-    "Pimiento",
-    "Cebolla",
-    "Tomate",
-    "Queso rallado o vegano",
-    "Yogur",
-    "Frutos rojos"
-  ]
-}
-];
+  const menus = [
+    {
+      entrante: "Crema de calabaza",
+      principal: "Lasaña de verduras",
+      postre: "Mousse de chocolate",
+      receta: 
+`1. Sofríe cebolla y verduras.
+2. Añade tomate triturado.
+3. Monta capas con pasta y verduras.
+4. Hornea 35 minutos a 180º.`,
+      compra: [
+        "Calabaza",
+        "Cebolla",
+        "Calabacín",
+        "Berenjena",
+        "Tomate triturado",
+        "Placas de lasaña",
+        "Chocolate negro",
+        "Nata o bebida vegetal"
+      ]
+    },
+    {
+      entrante: "Hummus con verduras",
+      principal: "Risotto de setas",
+      postre: "Peras al horno",
+      receta:
+`1. Sofríe cebolla.
+2. Añade arroz y caldo poco a poco.
+3. Incorpora setas.
+4. Remueve hasta cremoso.`,
+      compra: [
+        "Garbanzos",
+        "Tahini",
+        "Limón",
+        "Arroz",
+        "Setas",
+        "Caldo vegetal",
+        "Peras",
+        "Canela"
+      ]
+    }
+  ];
 
-const personas = document.getElementById("personas").value;
-const tipo = document.getElementById("tipo").value;
+  const personas = document.getElementById("personas").value;
+  const menu = menus[Math.floor(Math.random() * menus.length)];
 
-const menu = menus[Math.floor(Math.random() * menus.length)];
-
-document.getElementById("menu").textContent =
-`MENÚ ${tipo.toUpperCase()}
-Para ${personas} personas
+  document.getElementById("menu").textContent =
+`Para ${personas} personas
 
 Entrante:
 ${menu.entrante}
@@ -114,9 +84,9 @@ ${menu.principal}
 Postre:
 ${menu.postre}`;
 
-document.getElementById("compra").textContent =
-menu.compra.map(item => "- " + item).join("\n");
-
+  document.getElementById("receta").textContent = menu.receta;
+  document.getElementById("compra").textContent =
+    menu.compra.map(i => "- " + i).join("\n");
 }
 </script>
 
